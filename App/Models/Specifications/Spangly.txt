@@ -1,0 +1,24 @@
+START SECTION 1
+GENERATION_LIMIT None
+AGE_LIMIT None
+DEPTH 50
+THICKNESS 50
+
+DEFINE class constructer Sig
+DEFINE float w 0.1
+DEFINE float decay 0.999
+DEFINE float slash 2
+DEFINE float plus 180
+DEFINE float d 0.5
+DEFINE float slashr 2
+DEFINE float plusr 180
+
+SECTION 1
+END SECTION
+
+SECTION 2
+class constructer Lin
+END SECTION
+
+RULE GEOM(0.1) 1 -> 0[>>>>>>>>>>+D1]+>1
+RULE GEOM(1.0) 1 -> 0+>1

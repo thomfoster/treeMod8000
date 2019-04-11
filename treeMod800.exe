@@ -1,0 +1,7 @@
+#!/bin/bash
+cd App/Models
+python3 Main.py $1
+cd ../../
+cd Build
+make
+./App/App

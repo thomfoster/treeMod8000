@@ -1,0 +1,33 @@
+START SECTION 1
+GENERATION_LIMIT 4
+AGE_LIMIT None
+DEPTH 125
+THICKNESS 18
+
+DEFINE class constructer Sig
+DEFINE float w 0.1
+DEFINE float decay 0.95
+DEFINE float slash 2
+DEFINE float plus 180
+DEFINE float d 0.26
+DEFINE float slashr 2
+DEFINE float plusr 180
+
+SECTION 1
+END SECTION
+
+SECTION 2
+END SECTION
+
+SECTION 3
+class constructer Sig
+float w 0.00005
+float h 6.5
+float slash 5
+float slashr 3
+float plus 0
+END SECTION
+
+RULE GEOM(1.0) 1 -> 0002
+RULE GEOM(0.3) 2 -> 0[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>+D3]+[<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<+D3]+*
+RULE GEOM(0.3) 3 -> 0[>>>>>>>>>>+3]+<*

@@ -1,0 +1,27 @@
+START SECTION 1
+GENERATION_LIMIT None
+AGE_LIMIT None
+DEPTH 4
+THICKNESS 4
+
+DEFINE float w 1
+DEFINE float h 20.0
+
+SECTION 1
+class constructer Sig
+float slash 30
+float plus 120
+float decay 0.4
+float d 0.8
+END SECTION
+
+SECTION 2
+class constructer Sig
+float decay 0.6
+float slash 50
+float plus 40
+END SECTION
+
+RULE GEOM(0.85) 1 -> 0[>1]+[>1]+[>1]
+RULE GEOM(0.5) 1 -> 0[>D2]+[>D2]+[>D2]
+RULE GEOM(1.0) 2 -> 0[>0]+[>0]+[>0]+[>0]+[>0]+[>0]+[>0]+[>0]+[>0]

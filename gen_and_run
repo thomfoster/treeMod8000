@@ -1,0 +1,5 @@
+#!/bin/bash
+cd App/Models
+python3 Interpret.py $1
+cd ../../
+./run
