@@ -20,14 +20,14 @@ def generate_model(filename, overrideParams={}, return_analysis=False): # ------
         return vertices
 
     # IF BEING USED FOR RENDERING, WRITE TO FILE
-    else:
-        print("writing to file...")
-        with open("data.dat", mode="w") as f:
-            f.write(str(len(vertices))+"\n")
-            for vertex in vertices:
-                for feature in vertex:
-                    f.write(str(feature)+"\t")
-                f.write("\n")
+    #else:
+    print("writing to file...")
+    with open("data.dat", mode="w") as f:
+        f.write(str(len(vertices))+"\n")
+        for vertex in vertices:
+            for feature in vertex:
+                f.write(str(feature)+"\t")
+            f.write("\n")
 # END GENERATE_MODEL -----------------------------------------------------------
 
 

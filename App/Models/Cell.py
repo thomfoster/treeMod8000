@@ -60,9 +60,10 @@ class Cell:
         self.can_i_grow = 1
 
     def Age(self):
-        i = random()
-        if i < self.can_i_grow:
-            self.age += 1
+        # i = random()
+        # if i < self.can_i_grow:
+        #     self.age += 1
+        self.age += 1
 
     def Grow(self):
         self.Age()

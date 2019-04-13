@@ -12,11 +12,11 @@ import Turtle
 trunkLength = 0 # Make global to allow analyse_model to access this. Hacky :(
 
 # SHADOW PARAMETERS ------------------------------------------------------------
-num_voxels      = 100# 100
-shadow_width    = 10# 10
-shadow_height   = 10# 10
-dec_at_0        = 0.95# 0.95
-dec_at_1        = 0.99# 0.99
+num_voxels      = 1#50# 100
+shadow_width    = 1#4# 10
+shadow_height   = 1#20# 10
+dec_at_0        = 1#0.95# 0.95
+dec_at_1        = 1# 0.99
 impact          = 1
 # ------------------------------------------------------------------------------
 
@@ -41,10 +41,10 @@ def dec_prop(x,y,z):
     global voxels
     ix,iy,iz = what_box(x,y,z)
     for j in range(0,shadow_height):
-        for i in range(-j,j+1):
-            for k in range(-j,j+1):
+        for k in range(-j,j+1):
+            for i in range(-j,j+1):
                 a = min(max(ix+i,0),num_voxels-1)
-                b = min(max(iy+j,0),num_voxels-1)
+                b = min(max(iy-j,0),num_voxels-1)
                 c = min(max(iz+k,0),num_voxels-1)
                 voxels[a][b][c] *= dec(i,j,k)
                 if (voxels[a][b][c]==0):
@@ -102,7 +102,7 @@ def interpret(tree, return_analysis=False): # ----------------------------------
             # Plot branch start
             xyzr = turtle.View(return_analysis)
             if return_analysis == True:
-                xyzr += (element.Lenth(),)
+                xyzr += (element.Length(),)
             xyzr += (float(leaf),)
             points.append(xyzr)
 
@@ -114,7 +114,7 @@ def interpret(tree, return_analysis=False): # ----------------------------------
             # Plot branch end
             xyzr = turtle.View(return_analysis)
             if return_analysis == True:
-                xyzr += (element.Lenth(),)
+                xyzr += (element.Length(),)
             xyzr += (float(leaf),)
             points.append(xyzr)
 
