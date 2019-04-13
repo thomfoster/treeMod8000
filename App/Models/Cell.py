@@ -35,6 +35,7 @@ class Cell:
         tropism         = 0,
         next            = 0,
         width           = 0,
+        children        = []
         ):
 
         self.id         = id
@@ -54,9 +55,14 @@ class Cell:
         self.tropism    = tropism
         self.next       = next # no default as +1 added during parsing if needed
         self.width      = width
+        self.children   = []
+        self.mydude     = "Added when 0 parsed in rule"
+        self.can_i_grow = 1
 
     def Age(self):
-        self.age += 1
+        i = random()
+        if i < self.can_i_grow:
+            self.age += 1
 
     def Grow(self):
         self.Age()
@@ -81,9 +87,12 @@ class Cell:
                     if chr == '0':
                         x = self.Clone()
                         x.done = True
+                        self.mydude = x
                         ret.append(x)
                     else:
-                        ret.append(self.New(chr))
+                        x = self.New(chr)
+                        self.mydude.children.append(x)
+                        ret.append(x)
                 except ValueError:
                     if chr == '*':
                         x = self.Clone()
@@ -96,7 +105,7 @@ class Cell:
         type, args, str = r
         if type == "GEOM":
             i = random()
-            if i < args[0]:
+            if i < self.can_i_grow*args[0]:
                 return True
             return False
 

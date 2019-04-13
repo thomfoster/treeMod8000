@@ -20,8 +20,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
 //Settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1100;
+const unsigned int SCR_HEIGHT = 1100;
 
 glm::vec3 rotationAxis = glm::vec3(0.0f, 1.0f, 0.0f);
 
@@ -71,14 +71,14 @@ int main() {
     int num_vertices;
 
     // Read data into vertices
-    std::cout << "About to read_file" << std::endl;
+    std::cout << "About to read in data." << std::endl;
     std::ifstream read_file("../App/Models/data.dat");
     assert(read_file.is_open());
 
     read_file >> num_vertices;
-    float vertices[4*num_vertices];
+    float vertices[5*num_vertices];
 
-    std::cout << "Read in length" << std::endl;
+    std::cout << "Read in length of data." << std::endl;
 
     long i = 0;
     while (!read_file.eof())
@@ -87,6 +87,8 @@ int main() {
       i++;;
     }
     read_file.close();
+
+    std::cout << "Data read in successfully." << std::endl;
 
     // ---------------------------------------------------------------------------------------------
     // CREATE AND POPULATE BUFFERS
@@ -103,13 +105,15 @@ int main() {
     glBindVertexArray(VAO); //bind the vertex array at id vao to the current vertex array
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO); //bind id to the GL_ARRAY_BUFFER target
-    glBufferData(GL_ARRAY_BUFFER, 4*num_vertices*sizeof(float), vertices, GL_STATIC_DRAW); //upload data
+    glBufferData(GL_ARRAY_BUFFER, 5*num_vertices*sizeof(float), vertices, GL_STATIC_DRAW); //upload data
 
     //say how to read attributes
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*) 0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)(3*sizeof(float)));
+    glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(3*sizeof(float)));
     glEnableVertexAttribArray(1);
+    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(4*sizeof(float)));
+    glEnableVertexAttribArray(2);
 
     // ---------------------------------------------------------------------------------------------//
     // ---------------------------------------------------------------------------------------------//
@@ -126,6 +130,7 @@ int main() {
     {
       processInput(window);
 
+      // glClearColor(0.8f, 1.0f, 1.0f, 1.0f);
       glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -147,7 +152,10 @@ int main() {
       model = glm::rotate(model, glm::radians(-25.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
       //For time based rotation
-      model = glm::rotate(model, (float)glfwGetTime() * glm::radians(35.0f), rotationAxis);
+      //model = glm::rotate(model, (float)glfwGetTime() * glm::radians(35.0f), rotationAxis);
+
+      //For screenshots
+      model = glm::rotate(model, glm::radians(60.0f), rotationAxis);
 
       // For key press rotation
       //model = glm::rotate(model, glm::radians(0.035f), rotationAxis);

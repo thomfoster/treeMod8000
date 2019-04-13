@@ -1,6 +1,5 @@
 import sys, Parser, Deriver, Interpreter, Analyser
 
-
 def generate_model(filename, overrideParams={}, return_analysis=False): # ---------
     # PARSE
     Specification   = Parser.parse('Specifications/'+filename+'.txt', overrideParams)
@@ -30,6 +29,38 @@ def generate_model(filename, overrideParams={}, return_analysis=False): # ------
                     f.write(str(feature)+"\t")
                 f.write("\n")
 # END GENERATE_MODEL -----------------------------------------------------------
+
+
+def generate_self_org_model(filename, overrideParams={}, return_analysis=False):
+
+    # PARSE
+    Specification   = Parser.parse('Specifications/'+filename+'.txt',
+                                    overrideParams)
+
+    # DERIVE and INTERPRET together
+    n               = Specification['depth']
+    axiom           = Specification['axiom']
+    tree            = [axiom]
+    vertices        = []
+    for i in range(0,n):
+        tree = Deriver.derive(tree,1)
+        vertices        = Interpreter.interpret(tree, return_analysis)
+        print("Interpreted for the "+str(i+1)+"th time.")
+
+    # IF BEING USED IN MODEL FITTING
+    if return_analysis == True:
+        return vertices
+
+    # IF BEING USED FOR RENDERING, WRITE TO FILE
+    else:
+        print("writing to file...")
+        with open("data.dat", mode="w") as f:
+            f.write(str(len(vertices))+"\n")
+            for vertex in vertices:
+                for feature in vertex:
+                    f.write(str(feature)+"\t")
+                f.write("\n")
+# END GENERATE_SELF_ORGANISING_MODEL -------------------------------------------
 
 
 def analyse_model(points): # ---------------------------------------------------
@@ -64,5 +95,5 @@ def generate_and_analyse(filename, overrideParams, print_metrics=False): # -----
 if __name__ == '__main__': # ---------------------------------------------------
     # Called directly by treeMod8000.exe to populate data file
     filename = sys.argv[1]
-    generate_model(filename)
+    generate_self_org_model(filename)
 # END RENDER -------------------------------------------------------------------

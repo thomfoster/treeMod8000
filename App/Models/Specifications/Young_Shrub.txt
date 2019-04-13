@@ -5,12 +5,13 @@ DEPTH 7
 THICKNESS 2
 
 DEFINE class constructer Sig
-DEFINE float w 0.5
-DEFINE float decay 0.65
+DEFINE float w 0.45
+DEFINE float h 10
+DEFINE float decay 0.5
 DEFINE float slash 25
 DEFINE float plus 120
-DEFINE float plusr 15
-DEFINE float slashr 10
+DEFINE float plusr 0
+DEFINE float slashr 0
 
 SECTION 1
 END SECTION
