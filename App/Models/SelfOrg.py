@@ -6,18 +6,16 @@ from Cell import Cell
 
 import Turtle
 
-from Interpreter import scale
-
 # SHADOW PARAMETERS ------------------------------------------------------------
-num_voxels      = 50# 100
-shadow_width    = 4# 10
-shadow_height   = 20# 10
-dec_at_0        = 0.95# 0.95
+num_voxels      = 20# 100
+shadow_width    = 6# 10
+shadow_height   = 2# 10
+dec_at_0        = 0.99# 0.95
 dec_at_1        = 1# 0.99
-impact          = 1
 # ------------------------------------------------------------------------------
 
-# Stuff for shadows ------------------------------------------------------------
+
+# HELPERS ----------------------------------------------------------------------
 voxel_width     = 4.5 / num_voxels
 voxels          = [[[]]]
 diff            = dec_at_1 - dec_at_0
@@ -28,9 +26,9 @@ def dec(i,j,k):
     return dec_at_0 + diff*x/max_ijk
 
 def what_box(x,y,z):
-    vx = int(math.floor((2+x)/voxel_width))
-    vy = int(math.floor((y+2)/voxel_width))
-    vz = int(math.floor((z+2)/voxel_width))
+    vx = min(max(int(math.floor((2+x)/voxel_width)),0),num_voxels-1)
+    vy = min(max(int(math.floor((2+y)/voxel_width)),0),num_voxels-1)
+    vz = min(max(int(math.floor((2+z)/voxel_width)),0),num_voxels-1)
     return (vx,vy,vz)
 
 # Propogate in pyramid
@@ -44,29 +42,38 @@ def dec_prop(x,y,z):
                 b = min(max(iy-j,0),num_voxels-1)
                 c = min(max(iz+k,0),num_voxels-1)
                 voxels[a][b][c] *= dec(i,j,k)
-                if (voxels[a][b][c]==0):
-                    print(a,b,c)
+                #if (voxels[a][b][c]==0):
+                    #print(a,b,c)
 # END shadow set up ------------------------------------------------------------
 
-def calc_light(points):
+
+def calc_light(vertices,   # ---------------------------------------------------
+               in_num_voxels,
+               in_shadow_height,
+               in_shadow_width,
+               in_decrement_close,
+               in_decrement_far):
+
+    # update global params
+    global num_voxels, shadow_height_, shadow_width, dec_at_0, dec_at_1
+    num_voxels      = in_num_voxels
+    shadow_height   = in_shadow_height
+    shadow_width    = in_shadow_width
+    dec_at_0        = in_decrement_close
+    dec_at_1        = in_decrement_far
 
     global voxels # to allow dec_prop to access
     voxels = [[[1 for k in range(num_voxels)] for j in range(num_voxels)] for i in range(num_voxels)]
 
-    for p in points[::2]:
+    for p in vertices[::2]:
         (x,y,z) = p[:3]
         dec_prop(x,y,z)
 
     return voxels
+# END CALC LIGHT ---------------------------------------------------------------
 
-# for i in range(0, num_voxels):
-#     for j in range(0, num_voxels):
-#         for k in range(0, num_voxels):
-#             x = voxels[i][j][k]
-#             # print(x)
 
-def update_cells(tree, light_data):
-
+def update_cells(tree, voxels, scale): # -----------------------------------
     stack  = []
 
     # Instantiate turtle
@@ -89,7 +96,11 @@ def update_cells(tree, light_data):
             y /= scale
             z /= scale
             ix,iy,iz = what_box(x,y,z)
-            lightvalue = light_data[ix][iy][iz]
+            try:
+                lightvalue = voxels[ix][iy][iz]
+            except:
+                print(ix,iy,iz)
+                raise Exception(ix,iy,iz)
             element.can_i_grow = lightvalue
 
         elif element == "[":
@@ -99,4 +110,4 @@ def update_cells(tree, light_data):
             turtle = stack.pop()
         else:
             turtle.Interpret(element)
-# END shadow prop # --------------------------------------------------------
+# END SHADOW PROP # --------------------------------------------------------

@@ -62,8 +62,8 @@ def analyse(treeData):
 
     for i in range(1,n,2):
 
-        (x1, y1, z1, r1, vA, hA, pA, l) = treeData[i-1]
-        (x2, y2, z2, r2, vA, hA, pA, l) = treeData[i]
+        (x1, y1, z1, r1, vA, hA, pA, l, leaf) = treeData[i-1]
+        (x2, y2, z2, r2, vA, hA, pA, l, leaf) = treeData[i]
 
         vOrient.add(vA)
         hOrient.add(hA)

@@ -1,19 +1,27 @@
 START SECTION 1
 GENERATION_LIMIT None
 AGE_LIMIT None
-DEPTH 7
+DEPTH 6
 THICKNESS 2
+SELF_ORG 1
+
+NUM_VOXELS 50
+SHADOW_WIDTH 10
+SHADOW_HEIGHT 30
+DEC_AT_0 0.4
+DEC_AT_1 0.95
 
 DEFINE class constructer Sig
-DEFINE float w 0.45
+DEFINE float w 0.7
 DEFINE float h 10
 DEFINE float decay 0.5
-DEFINE float slash 25
+DEFINE float slash 45
 DEFINE float plus 120
-DEFINE float plusr 0
-DEFINE float slashr 0
+DEFINE float plusr 30
+DEFINE float slashr 15
 
 SECTION 1
 END SECTION
 
-RULE GEOM(1.0) 1 -> 0[>+1]+[>+1]+[>+1]
+RULE GEOM(0.9) 1 -> 0[>+1]+[>+1]+[>+1]
+RULE GEOM(0.4) 1 -> 01

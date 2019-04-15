@@ -6,6 +6,7 @@ Specification = cell_copy_of_spec_dict
 # DEFINE SOME DEFAULT VALUES FOR WHEN THINGS UNSPECIFIED
 Specification['age_limit'] = 1000
 Specification['gen_limit'] = 1000
+Specification['self_org']  = False
 
 def printSections():
     for s in Specification['sections'].items():
@@ -103,6 +104,30 @@ def parse(filepath, overrideParams):
 
             elif line[0] == "THICKNESS":
                 Specification['thickness'] = float(line[1])
+                continue
+
+            elif line[0] == "SELF_ORG":
+                Specification['self_org'] = bool(int(line[1]))
+                continue
+
+            elif line[0] == "NUM_VOXELS":
+                Specification['num_voxels'] = int(line[1])
+                continue
+
+            elif line[0] == "SHADOW_WIDTH":
+                Specification['shadow_width'] = int(line[1])
+                continue
+
+            elif line[0] == "SHADOW_HEIGHT":
+                Specification['shadow_height'] = int(line[1])
+                continue
+
+            elif line[0] == "DEC_AT_0":
+                Specification['dec_close'] = float(line[1])
+                continue
+
+            elif line[0] == "DEC_AT_1":
+                Specification['dec_far'] = float(line[1])
                 continue
 
             elif line[0] == "RULE":

@@ -1,0 +1,38 @@
+START SECTION 1
+GENERATION_LIMIT 4
+DEPTH 7
+THICKNESS 10
+SELF_ORG 0
+
+NUM_VOXELS 50
+SHADOW_WIDTH 4
+SHADOW_HEIGHT 20
+DEC_AT_0 0.95
+DEC_AT_1 1
+
+SECTION 1
+class constructer Sig
+float slash 90
+float slashr 5
+float plus 120
+float plusr 10
+float decay 0.8
+float d 0.4
+float h 30
+float w 0.8
+END SECTION
+
+SECTION 2
+class constructer Sig
+float slash 30
+float slashr 5
+float plus 90
+float plusr 10
+float decay 0.4
+float d 0.5
+float h 30
+float w 0.2
+END SECTION
+
+RULE GEOM(1.0) 1 -> 0[>D2]+*
+RULE GEOM(1.0) 2 -> 0[>2]+[>2]+[>2]+[>2]

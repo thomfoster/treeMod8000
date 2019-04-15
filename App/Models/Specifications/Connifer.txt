@@ -3,6 +3,13 @@ GENERATION_LIMIT 4
 AGE_LIMIT None
 DEPTH 125
 THICKNESS 18
+SELF_ORG 1
+
+NUM_VOXELS 20
+SHADOW_WIDTH 4
+SHADOW_HEIGHT 2
+DEC_AT_0 0.999
+DEC_AT_1 1
 
 DEFINE class constructer Sig
 DEFINE float w 0.1
@@ -28,6 +35,6 @@ float slashr 3
 float plus 0
 END SECTION
 
-RULE GEOM(1.0) 1 -> 0002
+RULE GEOM(1.0) 1 -> 0000002
 RULE GEOM(0.3) 2 -> 0[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>+D3]+[<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<+D3]+*
 RULE GEOM(0.3) 3 -> 0[>>>>>>>>>>+3]+<*
