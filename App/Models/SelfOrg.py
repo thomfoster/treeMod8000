@@ -7,10 +7,10 @@ from Cell import Cell
 import Turtle
 
 # SHADOW PARAMETERS ------------------------------------------------------------
-num_voxels      = 20# 100
-shadow_width    = 6# 10
-shadow_height   = 2# 10
-dec_at_0        = 0.99# 0.95
+num_voxels      = 50# 100
+shadow_width    = 20# 10
+shadow_height   = 20# 10
+dec_at_0        = 0.9# 0.95
 dec_at_1        = 1# 0.99
 # ------------------------------------------------------------------------------
 

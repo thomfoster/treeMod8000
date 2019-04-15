@@ -1,3 +1,5 @@
+# for sig2
+import math
 # ------------------------------------------------------------------------------
 # Cell.py
 # ------------------------------------------------------------------------------
@@ -155,6 +157,80 @@ class Sig(Cell):
     def Length(self):
         max_age = min(Specification['age_limit'], Specification['depth'])
         return self.h*2/(1+(2**(-self.w*(self.age-max_age))))
+
+class Sig2(Cell):
+    def Length(self):
+        max_age = min(Specification['age_limit'], Specification['depth'])
+        return (self.h/(1+math.e**(-self.w*(self.age))))-0.9*(self.h/2)
+
+class Bezier(Cell):
+    def Length(self):
+        return 1
+
+class Stoch(Sig):
+    def PerformRule(self,rule):
+        type, args, str = rule
+        ret = []
+        for chr in str:
+            try:
+                id = float(chr)
+                if chr == '0':
+                    x = self.Clone()
+                    x.done = True
+                    self.mydude = x
+                    ret.append(x)
+                else:
+                    x = self.New(chr)
+                    self.mydude.children.append(x)
+                    ret.append(x)
+            except ValueError:
+                if chr == '*':
+                    x = self.Clone()
+                    ret.append(x)
+                else:
+                    ret.append(chr)
+        return ret
+
+    def SelectRule(self):
+        selectedRule = "no rule selected"
+        probs = []
+        i = 0
+        total_weight = 0
+        for rule in self.rules:
+            type, args, string = rule
+            total_weight += args[0]
+            i += self.can_i_grow*args[0]
+            probs.append((i, rule))
+        rand = random()
+        for i,rule in probs:
+            if rand < i/total_weight:
+                return rule
+        return selectedRule
+
+
+    def Grow(self):
+        self.Age()
+        if self.done != True and self.age < Specification['age_limit'] and self.generation < Specification['gen_limit']:
+            rule       = self.SelectRule()
+            if rule != "no rule selected":
+                successor  = self.PerformRule(rule)
+                return successor
+        return [self]
+
+class Vox(Stoch):
+    def Grow(self):
+        rand = random()
+        if rand < self.can_i_grow:
+            self.Age()
+        if self.done != True and self.age < Specification['age_limit'] and self.generation < Specification['gen_limit']:
+            rule       = self.SelectRule()
+            if rule != "no rule selected":
+                successor  = self.PerformRule(rule)
+                return successor
+        return [self]
+
+
+
 
 
 

@@ -1,0 +1,47 @@
+START SECTION 1
+GENERATION_LIMIT None
+AGE_LIMIT None
+DEPTH 7
+THICKNESS 2
+SELF_ORG 0
+
+NUM_VOXELS 30
+SHADOW_WIDTH 5
+SHADOW_HEIGHT 50
+DEC_AT_0 0.2
+DEC_AT_1 0.95
+
+DEFINE class constructer Vox
+DEFINE float w 0.7
+DEFINE float h 10
+DEFINE float decay 0.5
+DEFINE float slashr 15
+DEFINE float plus 40
+DEFINE float plusr 10
+DEFINE float slash 45
+
+SECTION 1
+END SECTION
+
+SECTION 2
+END SECTION
+
+RULE GEOM(0) 1 -> 0[>+1]++++[>+1]
+RULE GEOM(0) 1 -> 0[>-1]++++[>-1]
+
+RULE GEOM(2.5) 1 -> 0[>+1]+++[>+1]+++[>+1]
+RULE GEOM(2.5) 1 -> 0[>-1]+++[>-1]+++[>-1]
+
+RULE GEOM(2.5) 1 -> 0[>+1]+++[>+1]+++[>+1]1
+RULE GEOM(2.5) 1 -> 0[>-1]+++[>-1]+++[>-1]1
+
+RULE GEOM(0) 1 -> 0[>+1]++[>+1]++[>+1]++[>+1]
+RULE GEOM(0) 1 -> 0[>-1]++[>-1]++[>-1]++[>-1]
+
+RULE GEOM(0) 1 -> 0[>>+1]+++1
+RULE GEOM(0) 1 -> 0[<<+1]---1
+
+RULE GEOM(7) 1 -> 01
+
+RULE GEOM(0) 2 -> 2
+RULE GEOM(0) 2 -> 01

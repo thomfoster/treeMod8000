@@ -1,4 +1,4 @@
-from Cell import Cell, Exp, Lin, Pow, Sig
+from Cell import Cell, Exp, Lin, Pow, Sig, Sig2, Stoch, Vox
 from Cell import Specification as cell_copy_of_spec_dict # Stores accessible spec data for each cell to use
 
 Specification = cell_copy_of_spec_dict
@@ -37,6 +37,12 @@ def parseVariable(l):
             return Pow
         elif line[2] == "Sig":
             return Sig
+        elif line[2] == "Sig2":
+            return Sig2
+        elif line[2] == "Stoch":
+            return Stoch
+        elif line[2] == "Vox":
+            return Vox
 
     else:
         raise Exception("Parse variable error: Undefined type: "+l)

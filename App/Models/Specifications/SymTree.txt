@@ -1,15 +1,24 @@
 START SECTION 1
 GENERATION_LIMIT None
 AGE_LIMIT None
-DEPTH 5
-THICKNESS 5
+DEPTH 6
+THICKNESS 1
+SELF_ORG 1
+
+NUM_VOXELS 30
+SHADOW_WIDTH 5
+SHADOW_HEIGHT 50
+DEC_AT_0 0.2
+DEC_AT_1 0.95
 
 SECTION 1
-class constructer Sig
+class constructer Vox
 float slash 30
-float plus 90
-float decay 0.4
+float plus 120
+float decay 0.6
 float d 0.5
+float h 30
+float w 0.02
 END SECTION
 
-RULE GEOM(1.0) 1 -> 0[>1]+[>1]+[>1]+[>1]
+RULE GEOM(1.0) 1 -> 0[>1]+[>1]+[>1]

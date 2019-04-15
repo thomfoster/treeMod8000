@@ -1,4 +1,5 @@
 import sys, Parser, Deriver, Interpreter, Analyser, SelfOrg
+from Cell import Cell
 
 def generate_model(filename, overrideParams={}, return_analysis=False): # ---------
     # PARSE
@@ -40,6 +41,10 @@ def generate_model(filename, overrideParams={}, return_analysis=False): # ------
                                                  decrement_far)
             SelfOrg.update_cells(tree, voxels, scale)
             print("Interpreted for the "+str(i+1)+"th time.")
+
+        for e in tree:
+            if isinstance(e, Cell):
+                print(e.can_i_grow)
 
     # Return points of if being used in rendering, write file
     if return_analysis == True:
