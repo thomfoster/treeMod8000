@@ -123,8 +123,8 @@ int main() {
 
     // Move object back into view
     glm::mat4 view = glm::mat4(1.0f);
-    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -4.5f));
-    view = glm::rotate(view, glm::radians(-40.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.5f));
+    view = glm::rotate(view, glm::radians(-45.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 
     // GLFW uses closed event loop. Only deal with events when you need to.
     while(!glfwWindowShouldClose(window))
@@ -156,7 +156,7 @@ int main() {
       model = glm::rotate(model, (float)glfwGetTime() * glm::radians(35.0f), rotationAxis);
 
       //For screenshots
-      //model = glm::rotate(model, glm::radians(90.0f), rotationAxis);
+      //model = glm::rotate(model, glm::radians(300.0f), rotationAxis);
 
       // For key press rotation
       //model = glm::rotate(model, glm::radians(0.035f), rotationAxis);

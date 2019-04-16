@@ -21,7 +21,7 @@ void main()
     vs_out.lightColor = vec3(0.8, 0.4, 0.0);
   }
   else{
-    vs_out.radius = 0.005;
-    vs_out.lightColor = vec3(0.1, 0.4, 0.1);
+    vs_out.radius = 0.002;
+    vs_out.lightColor = vec3(0.8, 0.4, 0.0);//vec3(0.1, 0.4, 0.1);
   };
 }
