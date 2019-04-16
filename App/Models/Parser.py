@@ -214,7 +214,10 @@ def parse(filepath, overrideParams):
 
         elif type == 'general':
             key = k.split('_')[1]
-            Specification[key] = v
+            if key == "depth":
+                Specification[key] = int(v)
+            else:
+                Specification[key] = v
 
         else:
             raise Exception("Extra parameter key not recognised: "+k)
