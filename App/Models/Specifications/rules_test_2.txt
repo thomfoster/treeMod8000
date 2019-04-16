@@ -1,0 +1,31 @@
+START SECTION 1
+GENERATION_LIMIT None
+AGE_LIMIT None
+DEPTH 5
+THICKNESS 0.39
+SELF_ORG 0
+
+NUM_VOXELS 50
+SHADOW_WIDTH 10
+SHADOW_HEIGHT 30
+DEC_AT_0 0.4
+DEC_AT_1 0.95
+
+DEFINE class constructer Stoch
+DEFINE float w 0.5
+DEFINE float h 21
+DEFINE float decay 0.95
+DEFINE float d 0.65
+DEFINE float slash 20
+DEFINE float plus 30
+DEFINE float plusr 10
+DEFINE float slashr 0
+
+SECTION 1
+END SECTION
+
+SECTION 2
+END SECTION
+
+RULE GEOM(0) 1 -> 0[>>+++1]+++++0[>>+++1]+++++0[>>+++1]
+RULE GEOM(10) 1 -> 0[>+++1]++++[>+++1]++++[>+++1]
