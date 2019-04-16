@@ -1,0 +1,4 @@
+# Ignore all cmake stuff in build directory
+Build/
+App/Models/__pycache__/*
+App/Models/data.dat
