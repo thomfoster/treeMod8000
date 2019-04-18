@@ -181,7 +181,7 @@ class Stoch(Sig):
                     ret.append(x)
                 else:
                     x = self.New(chr)
-                    self.mydude.children.append(x)
+                    #self.mydude.children.append(x)
                     ret.append(x)
             except ValueError:
                 if chr == '*':

@@ -1,7 +1,7 @@
 START SECTION 2
 GENERATION_LIMIT None
 AGE_LIMIT None
-DEPTH 7
+DEPTH 5
 THICKNESS 1.5
 SELF_ORG 0
 
@@ -35,18 +35,5 @@ float h 7
 float w 0.7
 END SECTION
 
-SECTION 3
-class constructer Sig2
-float slash 45
-float slashr 15
-float plus 40
-float plusr 40
-float decay 0.73
-float d 0.5
-float h 6
-float w 0.45
-END SECTION
-
-RULE GEOM(1.0) 2 -> 0[[>1]+[>1]+[>1]]
-RULE GEOM(1.0) 1 -> 0-[>++++D3]+0[>++++D3]+0+[>++++D3]+1
-RULE GEOM(1.0) 3 -> 0-[>++++3]+0[>++++3]+0+[>++++3]+1
+RULE GEOM(1.0) 1 -> 0[[>2]+[>2]+[>2]]1
+RULE GEOM(1.0) 2 -> 0-[>++++D2]+0[>++++D2]+0+[>++++D2]+1

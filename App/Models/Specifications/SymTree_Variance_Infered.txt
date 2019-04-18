@@ -1,17 +1,16 @@
 START SECTION 1
 GENERATION_LIMIT None
 AGE_LIMIT None
-DEPTH 8
+DEPTH 5
 THICKNESS 5
 
 SECTION 1
-class constructer Stoch
+class constructer Sig
 float slash 35
 float slashr 10
-float plus 90
-float plusr 10
+float plus 110
+float plusr 27
 float decay 0.6
-float d 0.5
 float h 20
 float w 1.0
 END SECTION

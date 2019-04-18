@@ -1,0 +1,42 @@
+START SECTION 2
+GENERATION_LIMIT None
+AGE_LIMIT None
+DEPTH 8
+THICKNESS 0.5
+SELF_ORG 0
+
+NUM_VOXELS 50
+SHADOW_WIDTH 4
+SHADOW_HEIGHT 10
+DEC_AT_0 0.98
+DEC_AT_1 1
+
+SECTION 1
+class constructer Stoch
+float slash 30
+float slashr 0
+float plus 120
+float plusr 0
+float decay 0.6
+float h 20
+float w 0.5
+END SECTION
+
+
+SECTION 2
+class constructer Sig
+float slash 35
+float slashr 15
+float plus 120
+float plusr 40
+float decay 0.7
+float d 0.5
+float h 0
+float w 0.7
+END SECTION
+
+RULE GEOM(1) 2 -> 01
+RULE GEOM(0.8) 1 -> 0[>+1]1
+RULE GEOM(0.6) 1 -> [>+1]1
+RULE GEOM(0.1) 1 -> [>+1]
+RULE GEOM(0.1) 1 -> 0

@@ -13,10 +13,10 @@ DEC_AT_1 1
 
 SECTION 1
 class constructer Sig
-float slash 30
-float slashr 15
-float plus 120
-float plusr 40
+float slash 23
+float slashr 27
+float plus 50
+float plusr 110
 float decay 0.7
 float d 0.5
 float h 10

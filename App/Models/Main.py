@@ -1,9 +1,12 @@
-import sys, Parser, Deriver, Interpreter, Analyser, SelfOrg
+import sys, Parser, Deriver, Interpreter, SelfOrg
+import Analyser2 as Analyser
 from Cell import Cell
 
-def generate_model(filename, overrideParams={}, return_analysis=False): # ---------
+def generate_model(filename, overrideParams={}, return_analysis=False, parse=True, spec={}): # ---------
     # PARSE
-    Specification   = Parser.parse('Specifications/'+filename+'.txt', overrideParams)
+    Specification = spec
+    if parse == True:
+        Specification   = Parser.parse('Specifications/'+filename+'.txt', overrideParams)
 
     vertices = []
 
@@ -101,10 +104,13 @@ def analyse_model(points): # ---------------------------------------------------
 # END ANALYSE_MODEL ------------------------------------------------------------
 
 
-def generate_and_analyse(filename, overrideParams, print_metrics=False): # -----
+def generate_and_analyse(filename, overrideParams, print_metrics=False, spec={}, parse=True): # -----
     # Directly called by PyABC
-
-    tree_data = generate_model(filename, overrideParams, return_analysis=True)
+    tree_data =[]
+    if parse == True:
+        tree_data = generate_model(filename, overrideParams, return_analysis=True)
+    else:
+        tree_data = generate_model(filename, overrideParams, return_analysis=True, parse=False, spec=spec)
     metrics   = analyse_model(tree_data)
 
     if print_metrics == True:

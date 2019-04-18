@@ -46,6 +46,9 @@ def interpret(tree, return_analysis=False, return_scale=False): # --------------
     for element in tree:
         if isinstance(element, Cell):
 
+            # print(turtle.heading[:,0],end='')
+            # print('\t', end='')
+            # print(turtle.parentHeading)
             # CODE FOR INTERPRETING CELLS HERE ---------------------------------
             # Sets leafs colour in renderer
             leaf = 0;
