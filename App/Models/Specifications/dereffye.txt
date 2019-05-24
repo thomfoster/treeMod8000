@@ -13,14 +13,14 @@ DEC_AT_1 1
 
 SECTION 1
 class constructer Sig
-float slash 30
-float slashr 15
-float plus 120
-float plusr 40
-float decay 0.7
+float slash 25
+float slashr 22
+float plus 110
+float plusr 112
+float decay 0.68
 float d 0.5
-float h 10
-float w 0.9
+float h 12
+float w 1.1
 END SECTION
 
 RULE GEOM(1.0) 1 -> 0[>+1]+0[>+1]+0[>+1]+1

@@ -37,6 +37,6 @@ END SECTION
 
 RULE GEOM(1) 2 -> 01
 RULE GEOM(0.8) 1 -> 0[>+1]1
-RULE GEOM(0.6) 1 -> [>+1]1
 RULE GEOM(0.1) 1 -> [>+1]
+RULE GEOM(0.6) 1 -> [>+1]1
 RULE GEOM(0.1) 1 -> 0
